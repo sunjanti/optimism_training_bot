@@ -4,7 +4,7 @@ import schedule
 import time
 import datetime
 
-TOKEN = "ТВОЙ_ТОКЕН"
+TOKEN = "8334888358:AAG4XN5T-sYker_C0Dar8_ujRyMbNduqIOA"
 bot = telebot.TeleBot(TOKEN)
 
 # Здесь будем хранить состояние пользователей
@@ -85,3 +85,4 @@ while True:
     schedule.run_pending()
     bot.polling(none_stop=True, interval=0, timeout=20)
     time.sleep(1)
+
