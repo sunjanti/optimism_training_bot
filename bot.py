@@ -34,6 +34,7 @@ WELCOME_TEXT = """
 Бот курс повышения оптимизма длится три дня.
 Утром вам будет приходить задание, которое нужно будет выполнить за день.
 В конце дня оценить свое выполнение, чтобы получить следующее задание утром.
+
 Готовы к бот курсу повышения оптимизма?
 """
 
@@ -61,7 +62,7 @@ def start_message(message):
     btn_no = types.InlineKeyboardButton("Нет", callback_data="ready_no")
     markup.add(btn_yes, btn_no)
 
-    bot.send_message(chat_id, WELCOME_TEXT, reply_markup=markup)
+    bot.send_message(chat_id, WELCOME_TEXT, parse_mode="HTML", reply_markup=markup)
 
 #  Ответы на кнопки "Да" / "Нет"
 @bot.callback_query_handler(func=lambda call: call.data in ["ready_yes", "ready_no"])
@@ -146,3 +147,4 @@ while True:
     schedule.run_pending()
     bot.polling(none_stop=True, interval=0, timeout=20)
     time.sleep(1)
+
