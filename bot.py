@@ -139,7 +139,7 @@ def handle_answer(call):
     bot.answer_callback_query(call.id)
 
 # --- Планировщик: каждый день в 9:00 ---
-schedule.every().day.at("09:00").do(morning_job)
+schedule.every().day.at("04:00").do(morning_job)
 
 print("Бот запущен. Ждём 9 утра...")
 
@@ -154,4 +154,5 @@ threading.Thread(target=run_schedule, daemon=True).start()
 
 # основной процесс — слушает команды
 bot.polling(none_stop=True, interval=0, timeout=20)
+
 
