@@ -3,6 +3,7 @@ from telebot import types
 import schedule
 import time
 import datetime
+import threading
 
 TOKEN = "8334888358:AAG4XN5T-sYker_C0Dar8_ujRyMbNduqIOA"
 bot = telebot.TeleBot(TOKEN)
@@ -143,8 +144,14 @@ schedule.every().day.at("09:00").do(morning_job)
 print("Бот запущен. Ждём 9 утра...")
 
 # --- Основной цикл ---
-while True:
-    schedule.run_pending()
-    bot.polling(none_stop=True, interval=0, timeout=20)
-    time.sleep(1)
+def run_schedule():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# запускаем планировщик параллельно с polling
+threading.Thread(target=run_schedule, daemon=True).start()
+
+# основной процесс — слушает команды
+bot.polling(none_stop=True, interval=0, timeout=20)
 
