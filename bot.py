@@ -65,6 +65,10 @@ def start_message(message):
 
     bot.send_message(chat_id, WELCOME_TEXT, parse_mode="HTML", reply_markup=markup)
 
+# Отправка видео (файл должен быть в папке рядом с кодом, например video.mp4)
+    with open("video_1.mp4", "rb") as video:
+        bot.send_video(chat_id, video, caption="Вот наше приветственное видео 🎬")
+
 #  Ответы на кнопки "Да" / "Нет"
 @bot.callback_query_handler(func=lambda call: call.data in ["ready_yes", "ready_no"])
 def callback_ready(call):
@@ -154,5 +158,6 @@ threading.Thread(target=run_schedule, daemon=True).start()
 
 # основной процесс — слушает команды
 bot.polling(none_stop=True, interval=0, timeout=20)
+
 
 
